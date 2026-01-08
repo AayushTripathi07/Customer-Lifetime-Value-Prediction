@@ -1,105 +1,103 @@
-# Customer-Lifetime-Value-Prediction
-Data Analytics & Advanced Skills Interview Preparation
+Customer Lifetime Value (CLV) Prediction using MySQL & Python
 📌 Project Overview
 
-This repository documents advanced data analytics concepts, approaches, and structured interview-ready explanations covering real-world data analyst scenarios.
-It reflects practical knowledge in data analysis, SQL optimization, feature engineering, sentiment analysis, and model evaluation, aligned with industry expectations.
+This project focuses on building a Customer Lifetime Value (CLV) prediction model using historical transaction data. The objective is to extract data from a MySQL database, perform data cleaning and feature engineering using RFM (Recency, Frequency, Monetary) analysis, and train a regression model to estimate CLV. The results are evaluated using standard performance metrics and interpreted for business decision-making.
 
-🧠 Topics Covered
-1. Data Analysis & Trend Identification
+🛠️ Technologies Used
 
-Data cleaning and validation
+Python
 
-Time-series trend analysis
+Pandas, NumPy
 
-Feature engineering for time-based insights
+Scikit-learn
 
-Visualization using BI tools
+MySQL
 
-2. Sentiment Analysis on Text Data
+SQLAlchemy
 
-Text preprocessing (tokenization, stopwords, lemmatization)
+📂 Project Structure
+CLV_Project/
+│
+├── clv_prediction.py        # MySQL ETL + data cleaning + model training
+├── README.md                # Project documentation
+└── (Optional) screenshots/  # Output screenshots (if added)
 
-Feature extraction (TF-IDF, embeddings)
+🔄 ETL Process (MySQL → Python)
 
-Sentiment classification techniques:
+Transactional data is stored in a MySQL database.
 
-Rule-based (VADER)
+Data is extracted using SQLAlchemy and SQL queries.
 
-Machine Learning
+The extracted data is loaded into a Pandas DataFrame.
 
-Transformer-based models (BERT)
+Data cleaning is performed to handle:
 
-Model evaluation and insight generation
+Invalid or missing dates
 
-3. Handling Missing Data
+Invalid transaction amounts
 
-Understanding missing data mechanisms (MCAR, MAR, MNAR)
+⚙️ Feature Engineering (RFM Analysis)
 
-Statistical and advanced imputation techniques
+For each customer, the following features are engineered:
 
-Bias prevention strategies
+Recency: Days since the most recent transaction
 
-Validation and documentation practices
+Frequency: Number of transactions
 
-4. SQL Query Optimization
+Monetary: Total amount spent
 
-Query execution plan analysis
+The CLV is approximated using the historical monetary value.
 
-Indexing strategies
+🤖 Model Development
 
-Join and aggregation optimization
+Model Used: Random Forest Regressor
 
-Performance validation techniques
+Input Features: Recency, Frequency, Monetary
 
-5. Feature Engineering for Predictive Models
+Target Variable: Customer Lifetime Value (CLV)
 
-Handling categorical and numerical variables
+The dataset is split into training and testing sets, and the model is trained to predict CLV.
 
-Encoding and scaling techniques
+📊 Model Performance
 
-Outlier treatment
+RMSE: 256.30
 
-Feature selection and leakage prevention
+R² Score: 0.27
 
-6. Model Performance Evaluation
+The RMSE indicates reasonable prediction accuracy given the small dataset size. The positive R² score shows that the model performs better than a baseline mean predictor.
 
-Appropriate metric selection
+📈 Feature Importance Insights
 
-Cross-validation
+Monetary Value: Most influential feature (~68%)
 
-Error analysis
+Recency: Second most important feature (~29%)
 
-Business impact validation
+Frequency: Lower impact due to similar purchase counts across customers
 
-🛠️ Tools & Technologies
+💡 Business Implications
 
-Python (Pandas, NumPy, NLP libraries)
+High-spending and recently active customers should be prioritized for retention and loyalty programs.
 
-SQL / MySQL
+Customers with high past spending but low recent activity can be targeted using reactivation campaigns.
 
-Excel
+Marketing resources can be optimized by focusing on customers with higher predicted CLV.
 
-Power BI / Tableau
+▶️ How to Run the Project
 
-Machine Learning & Statistical Techniques
+Ensure MySQL is running and the database/table are set up.
 
-🎯 Purpose
+Update MySQL credentials in clv_prediction.py.
 
-Interview preparation for Data Analyst roles
+Install dependencies:
 
-Demonstrates structured analytical thinking
+pip install pandas numpy scikit-learn sqlalchemy mysql-connector-python
 
-Showcases real-world problem-solving approaches
 
-Acts as a reference for analytics best practices
+Run the script:
 
-👤 Author
+python clv_prediction.py
 
-Aayush Tripathi
-B.Tech Computer Science | Data Analyst Aspirant
-Skilled in Python, SQL, Power BI, Tableau, and Data Analytics
+✅ Conclusion
 
-📎 Note
-
+This project demonstrates an end-to-end data analytics and machine learning workflow, from MySQL-based ETL to CLV prediction and business insight generation. It highlights how transactional data can be transformed into actionable intelligence to support customer-centric business strategies.
 This repository focuses on conceptual clarity, structured thinking, and practical approaches, rather than only code, to reflect real interview and job expectations.
