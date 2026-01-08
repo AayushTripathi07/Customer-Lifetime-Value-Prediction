@@ -5,9 +5,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 
-# =========================
-# MYSQL ETL - EXTRACT
-# =========================
 engine = create_engine(
     "mysql+mysqlconnector://root:Aayush07%40@localhost:3306/clv_db"
 )
@@ -22,16 +19,10 @@ df = pd.read_sql(query, engine)
 print("Data from MySQL:")
 print(df.head())
 
-# =========================
-# TRANSFORM - CLEANING
-# =========================
 df['order_date'] = pd.to_datetime(df['order_date'], errors='coerce')
 df = df.dropna(subset=['order_date'])
 df = df[df['order_amount'] > 0]
 
-# =========================
-# FEATURE ENGINEERING (RFM)
-# =========================
 reference_date = df['order_date'].max() + pd.Timedelta(days=1)
 
 rfm = df.groupby('customer_id').agg({
@@ -48,9 +39,6 @@ rfm['CLV'] = rfm['Monetary']
 print("\nRFM Table:")
 print(rfm)
 
-# =========================
-# MODEL TRAINING
-# =========================
 X = rfm[['Recency', 'Frequency', 'Monetary']]
 y = rfm['CLV']
 
@@ -61,9 +49,6 @@ X_train, X_test, y_train, y_test = train_test_split(
 model = RandomForestRegressor(n_estimators=200, random_state=42)
 model.fit(X_train, y_train)
 
-# =========================
-# EVALUATION
-# =========================
 y_pred = model.predict(X_test)
 
 rmse = np.sqrt(mean_squared_error(y_test, y_pred))
