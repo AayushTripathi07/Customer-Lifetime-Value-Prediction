@@ -1,4 +1,5 @@
 Customer Lifetime Value (CLV) Prediction using MySQL & Python
+
 📌 Project Overview
 
 This project focuses on building a Customer Lifetime Value (CLV) prediction model using historical transaction data. The objective is to extract data from a MySQL database, perform data cleaning and feature engineering using RFM (Recency, Frequency, Monetary) analysis, and train a regression model to estimate CLV. The results are evaluated using standard performance metrics and interpreted for business decision-making.
